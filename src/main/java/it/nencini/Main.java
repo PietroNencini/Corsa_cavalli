@@ -4,22 +4,19 @@ import java.util.ArrayList;
 
 public class Main {
 
-    public static ArrayList<HorseRunner> classifica = new ArrayList<>();
+    private final static int NUM_HORSE = 10;
+    public static ArrayList<HorseRunner> classifica = new ArrayList<>();        // Lista della classifica
     public static void main(String[] args) throws Exception{
+        ArrayList<HorseRunner> runners = new ArrayList<>(10);
         System.out.println("Corsa dei cavalli \n\n");
-        HorseRunner hr1 = new HorseRunner(1);
-        HorseRunner hr2 = new HorseRunner(2);
-        HorseRunner hr3 = new HorseRunner(3);
-        HorseRunner hr4 = new HorseRunner(4);
-        hr1.start();
-        hr2.start();
-        hr3.start();
-        hr4.start();
-        hr1.join();
-        hr2.join();
-        hr3.join();
-        hr4.join();
-
+        for(int i = 0; i< NUM_HORSE; i++) {
+            runners.add(new HorseRunner());
+            runners.get(i).start();
+        }
+        for (HorseRunner horse : runners) {
+            horse.join();
+        }
+        
         System.out.println("CLASSIFICA FINALE" + classifica);
 
     }
