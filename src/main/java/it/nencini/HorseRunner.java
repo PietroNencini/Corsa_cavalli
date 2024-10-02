@@ -4,17 +4,19 @@ public class HorseRunner extends Thread {
 
     private static int id_count = 1;
     int horseId;
+    Ranking ranking; 
 
-    public HorseRunner() {
+    public HorseRunner(Ranking r) {
+        this.ranking = r;
         this.horseId = id_count;
         id_count++;
     }
 
     @Override
     public void run() {
-        for(int i = 0; i < 15; i++) {
+        for(int i = 0; i < 100; i++) {
             try {
-                Thread.sleep((int) Math.random() * 1000);
+                Thread.sleep((int) Math.random() * 1600);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -23,8 +25,8 @@ public class HorseRunner extends Thread {
         finish();
     }
 
-    private synchronized void finish() {
-        Main.classifica.add(this);
+    private void finish() {
+        ranking.addCompletedHorse(this);
     }
 
     @Override
